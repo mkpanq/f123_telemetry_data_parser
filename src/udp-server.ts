@@ -1,41 +1,33 @@
 import dgram from 'node:dgram';
-import {HeaderParser} from "./header-parser";
 
-export class Server {
-    private readonly listener: dgram.Socket;
+type UdpSocket = dgram.Socket;
 
-    constructor() {
-        this.listener = dgram.createSocket('udp4');
-        console.log('Listener initialized\n')
+export class UdpServer {
+    private readonly parser;
+
+    constructor(parser: any) {
+        this.parser = parser
     }
 
     public start(port: number): void {
-        const serverSetup = this.setupListening().setupMessageReceiving();
+        const socket = this.initSocket();
 
-        serverSetup.listener.bind(port)
+        socket.bind(port)
     }
 
-    // Connection configuration
-    private setupListening(): this {
-        this.listener.on('listening', () => {
-            const address = this.listener.address()
+    private initSocket(): UdpSocket {
+        const socket = dgram.createSocket('udp4');
 
-            console.log('Address: ', address.address, 'Port: ', address.port)
+        socket.on('message', (message) => {
+            this.parse(message);
         });
 
-        return this
+        return socket;
     }
 
-    // Data receiving configuration
-    private setupMessageReceiving(): this {
-        const headerParser = new HeaderParser();
-        this.listener.on('message', (message) => {
+    private parse(message: Buffer): void {
+        const parsedData = this.parser.parseHeader(message);
 
-            const parsedData = headerParser.parseHeader(message);
-            console.log('Message Received:\n');
-            console.log(parsedData)
-        });
-
-        return this
+        console.log(parsedData)
     }
 }
