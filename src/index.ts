@@ -1,6 +1,6 @@
 import {Server} from "./server";
 
-console.log("Hello World! This is index file !")
+const port: number = 20777;
 const server = new Server();
 
-server.start();
+server.start(port);
