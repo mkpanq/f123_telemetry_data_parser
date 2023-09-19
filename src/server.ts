@@ -1,4 +1,5 @@
 import dgram from 'node:dgram';
+import {HeaderParser} from "./header-parser";
 
 export class Server {
     PORT: number = 20777;
@@ -27,8 +28,12 @@ export class Server {
     }
 
     private setupMessageReceiving(): this {
+        const headerParser = new HeaderParser();
         this.listener.on('message', (message) => {
-            console.log('Message', message.toString())
+            console.log('Message Received:\n');
+
+            const parsedData = headerParser.parseHeader(message);
+            console.log(parsedData);
         });
 
         return this
