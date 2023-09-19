@@ -1,12 +1,13 @@
 import dgram from 'node:dgram';
+import {UdpParser} from "./parser/parser";
 
 type UdpSocket = dgram.Socket;
 
 export class UdpServer {
-    private readonly parser;
+    readonly parser: UdpParser<any>;
 
-    constructor(parser: any) {
-        this.parser = parser
+    constructor(parser: UdpParser<any>) {
+        this.parser = parser;
     }
 
     public start(port: number): void {
@@ -26,8 +27,6 @@ export class UdpServer {
     }
 
     private parse(message: Buffer): void {
-        const parsedData = this.parser.parseHeader(message);
-
-        console.log(parsedData)
+        console.log(this.parser.parseBuffer(message));
     }
 }

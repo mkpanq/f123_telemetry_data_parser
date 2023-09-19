@@ -1,7 +1,8 @@
 import {UdpServer} from "./udp-server";
-import {HeaderParser} from "./header-parser";
+import {HeaderParser} from "./parser/parser";
 
 const port: number = 20777;
-const server = new UdpServer(new HeaderParser());
+const parser = new HeaderParser();
+const server = new UdpServer(parser);
 
 server.start(port);
