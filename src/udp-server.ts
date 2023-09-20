@@ -1,17 +1,15 @@
 import dgram from 'node:dgram';
-import {MotionPacketParser} from "./parser/parser";
+import {PacketParser} from "./parser";
 
 type UdpSocket = dgram.Socket;
 
 export class UdpServer {
-    readonly parser: MotionPacketParser;
-    OKpackets: number;
+    okPackets: number;
     errorPackets: number;
 
-    constructor(parser: MotionPacketParser) {
-        this.parser = parser;
+    constructor() {
         this.errorPackets = 0;
-        this.OKpackets = 0;
+        this.okPackets = 0;
     }
 
     public start(port: number): void {
@@ -24,25 +22,19 @@ export class UdpServer {
         const socket = dgram.createSocket('udp4');
 
         socket.on('message', (message) => {
-            this.parse(message);
+            try {
+                const parsedPacket = PacketParser.call(message);
+                console.log(parsedPacket);
+                this.okPackets += 1;
+            } catch (error) {
+                this.errorPackets += 1;
+            }
+
+            // console.log(`OK: ${this.okPackets}`)
+            // console.log(`Error: ${this.errorPackets}`)
         });
 
         return socket;
     }
 
-    private parse(message: Buffer): void {
-        try {
-            const data = this.parser.parseBuffer(message)
-            this.OKpackets += 1;
-            if (data['m_header']['m_packetId'] == 0) {
-                console.log(data);
-            }
-            console.log(`OK: ${this.OKpackets}`)
-            console.log(`Error: ${this.errorPackets}`)
-        } catch (e) {
-            this.errorPackets += 1;
-            console.log(`OK: ${this.OKpackets}`)
-            console.log(`Error: ${this.errorPackets}`)
-        }
-    }
 }
