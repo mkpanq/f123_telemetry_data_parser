@@ -1,4 +1,4 @@
-import {BasePacket} from "./packet.interface";
+import {BasePacket} from "./_base.interface";
 
 export interface CarMotionData {
     readonly m_worldPositionX: number;
