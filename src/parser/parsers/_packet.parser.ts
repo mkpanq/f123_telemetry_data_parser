@@ -1,9 +1,9 @@
 import {Parser} from "binary-parser";
 import {
-    BasePacket,
-    CarSetupPacket,
-    CarTelemetryPacket,
-    LapDataPacket,
+    BasePacket, CarDamagePacket,
+    CarSetupPacket, CarStatusPacket,
+    CarTelemetryPacket, FinalClassificationPacket,
+    LapDataPacket, LobbyInfoPacket,
     MotionPacket,
     ParticipantsPacket,
     SessionPacket
@@ -25,4 +25,8 @@ export type PacketType =
     LapDataPacket |
     ParticipantsPacket |
     CarSetupPacket |
-    CarTelemetryPacket;
+    CarTelemetryPacket |
+    CarStatusPacket |
+    FinalClassificationPacket |
+    LobbyInfoPacket |
+    CarDamagePacket;

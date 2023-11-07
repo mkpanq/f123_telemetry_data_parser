@@ -5,3 +5,7 @@ export * from './lap-data.interface';
 export * from './participants.interface';
 export * from './car-setup.interface';
 export * from './car-telemetry.interface';
+export * from './car-status.interface';
+export * from './final-classification.interface';
+export * from './lobby-info.interface';
+export * from './car-damage.interface';

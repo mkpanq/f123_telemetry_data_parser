@@ -1,10 +1,19 @@
-import {MotionPacketParser, PacketHeaderParser, BaseParser, PacketType} from "./parsers";
+import {
+    MotionPacketParser,
+    PacketHeaderParser,
+    BaseParser,
+    PacketType,
+    SessionPacketParser,
+    LapDataPacketParser,
+    ParticipantsPacketParser,
+    CarSetupPacketParser,
+    CarTelemetryPacketParser,
+    CarStatusPacketParser,
+    FinalClassificationPacketParser, CarDamagePacketParser
+} from "./parsers";
 import {NoParserFoundError} from "./errors";
-import {SessionPacketParser} from "./parsers/packets/session.packet";
-import {LapDataPacketParser} from "./parsers/packets/lap-data.packet";
-import {ParticipantsPacketParser} from "./parsers/packets/participants.packet";
-import {CarSetupPacketParser} from "./parsers/packets/car-setup.packet";
-import {CarTelemetryPacketParser} from "./parsers/packets/car-telemetry.packet";
+import {LobbyInfoPacketParser} from "./parsers/packets/lobby-info.packet";
+
 
 export class PacketParser {
     static call(message: Buffer): PacketType {
@@ -32,13 +41,13 @@ export class PacketParser {
             case 6:
                 return new CarTelemetryPacketParser();
             case 7:
-                return;
+                return new CarStatusPacketParser();
             case 8:
-                return;
+                return new FinalClassificationPacketParser();
             case 9:
-                return;
+                return new LobbyInfoPacketParser();
             case 10:
-                return;
+                return new CarDamagePacketParser();
             case 11:
                 return;
             case 12:
