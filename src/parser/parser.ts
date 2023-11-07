@@ -38,6 +38,8 @@ export class PacketParser {
                 return;
             case 12:
                 return;
+            case 13:
+                return;
             default:
                 return;
         }
