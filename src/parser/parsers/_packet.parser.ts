@@ -1,5 +1,6 @@
 import {Parser} from "binary-parser";
 import {BasePacket, MotionPacket} from "../types";
+import {SessionPacket} from "../types/session.interface";
 
 export class BaseParser<TPacketType extends PacketType> extends Parser {
     parseBuffer(buffer: Buffer): TPacketType {
@@ -9,4 +10,4 @@ export class BaseParser<TPacketType extends PacketType> extends Parser {
 
 
 // TODO: BasePacket type should be separated from to-parsed packet types !
-export type PacketType = BasePacket | MotionPacket;
+export type PacketType = BasePacket | MotionPacket | SessionPacket;

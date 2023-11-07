@@ -1,5 +1,6 @@
 import {MotionPacketParser, PacketHeaderParser, BaseParser, PacketType} from "./parsers";
 import {NoParserFoundError} from "./errors";
+import {SessionPacketParser} from "./parsers/packets/session.packet";
 
 export class PacketParser {
     static call(message: Buffer): PacketType {
@@ -15,7 +16,7 @@ export class PacketParser {
             case 0:
                 return new MotionPacketParser();
             case 1:
-                return;
+                return new SessionPacketParser();
             case 2:
                 return;
             case 3:
