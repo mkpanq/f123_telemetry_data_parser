@@ -9,10 +9,9 @@ import {
     CarSetupPacketParser,
     CarTelemetryPacketParser,
     CarStatusPacketParser,
-    FinalClassificationPacketParser, CarDamagePacketParser
+    FinalClassificationPacketParser, CarDamagePacketParser, TyreSetsPacketParser, LobbyInfoPacketParser
 } from "./parsers";
 import {NoParserFoundError} from "./errors";
-import {LobbyInfoPacketParser} from "./parsers/packets/lobby-info.packet";
 
 
 export class PacketParser {
@@ -49,7 +48,7 @@ export class PacketParser {
             case 10:
                 return new CarDamagePacketParser();
             case 11:
-                return;
+                return new TyreSetsPacketParser();
             case 12:
                 return;
             case 13:

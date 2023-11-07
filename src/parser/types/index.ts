@@ -9,3 +9,4 @@ export * from './car-status.interface';
 export * from './final-classification.interface';
 export * from './lobby-info.interface';
 export * from './car-damage.interface';
+export * from './tyre-sets.interface';
