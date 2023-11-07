@@ -43,6 +43,8 @@ export class LapDataPacketParser extends BaseParser<LapDataPacket> {
                             .uint8('m_pitStopShouldServePen'),
                         length: 22
                     })
+                    .uint8('m_timeTrialPBCarIdx')
+                    .uint8('m_timeTrialRivalCarIdx')
             });
     }
 }

@@ -11,7 +11,7 @@ interface WeatherForecastSample {
     readonly m_rainPercentage: number;
 }
 
-interface MarhallZone {
+interface MarshallZone {
     readonly m_zoneStart: number;
     readonly m_zoneFlag: number;
 }
@@ -33,7 +33,7 @@ export interface SessionPacket extends BasePacket {
     readonly m_spectatorCarIndex: number;
     readonly m_sliProNativeSupport: number;
     readonly m_numMarshalZones: number;
-    readonly m_marshalZones: MarhallZone[];
+    readonly m_marshalZones: MarshallZone[];
     readonly m_safetyCarStatus: number;
     readonly m_networkGame: number;
     readonly m_numWeatherForecastSamples: number;
