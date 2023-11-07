@@ -3,7 +3,7 @@ import {
     BasePacket, CarDamagePacket,
     CarSetupPacket, CarStatusPacket,
     CarTelemetryPacket, FinalClassificationPacket,
-    LapDataPacket, LobbyInfoPacket,
+    LapDataPacket, LobbyInfoPacket, MotionExPacket,
     MotionPacket,
     ParticipantsPacket,
     SessionPacket, TyreSetsPacket
@@ -30,4 +30,5 @@ export type PacketType =
     FinalClassificationPacket |
     LobbyInfoPacket |
     CarDamagePacket |
-    TyreSetsPacket;
+    TyreSetsPacket |
+    MotionExPacket;

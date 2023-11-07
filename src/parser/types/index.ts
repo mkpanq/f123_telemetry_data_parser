@@ -10,3 +10,4 @@ export * from './final-classification.interface';
 export * from './lobby-info.interface';
 export * from './car-damage.interface';
 export * from './tyre-sets.interface';
+export * from './motion-ex.interface';
