@@ -3,6 +3,8 @@ import {NoParserFoundError} from "./errors";
 import {SessionPacketParser} from "./parsers/packets/session.packet";
 import {LapDataPacketParser} from "./parsers/packets/lap-data.packet";
 import {ParticipantsPacketParser} from "./parsers/packets/participants.packet";
+import {CarSetupPacketParser} from "./parsers/packets/car-setup.packet";
+import {CarTelemetryPacketParser} from "./parsers/packets/car-telemetry.packet";
 
 export class PacketParser {
     static call(message: Buffer): PacketType {
@@ -26,9 +28,9 @@ export class PacketParser {
             case 4:
                 return new ParticipantsPacketParser();
             case 5:
-                return;
+                return new CarSetupPacketParser();
             case 6:
-                return;
+                return new CarTelemetryPacketParser();
             case 7:
                 return;
             case 8:

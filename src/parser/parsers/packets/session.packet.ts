@@ -1,5 +1,5 @@
 import {BaseParser} from "../_packet.parser";
-import {SessionPacket} from "../../types/session.interface";
+import {SessionPacket} from "../../types";
 import {PacketHeaderParser} from "../_header.parser";
 import {Parser} from "binary-parser";
 

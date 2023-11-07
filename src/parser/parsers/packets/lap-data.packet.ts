@@ -1,7 +1,7 @@
 import {BaseParser} from "../_packet.parser";
 import {PacketHeaderParser} from "../_header.parser";
 import {Parser} from "binary-parser";
-import {LapDataPacket} from "../../types/lap-data.interface";
+import {LapDataPacket} from "../../types";
 
 export class LapDataPacketParser extends BaseParser<LapDataPacket> {
     constructor() {

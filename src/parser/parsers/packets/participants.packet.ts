@@ -1,5 +1,5 @@
 import {BaseParser} from "../_packet.parser";
-import {ParticipantsPacket} from "../../types/participants.interface";
+import {ParticipantsPacket} from "../../types";
 import {PacketHeaderParser} from "../_header.parser";
 import {Parser} from "binary-parser";
 
