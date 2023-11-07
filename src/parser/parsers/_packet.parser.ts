@@ -5,7 +5,7 @@ import {
     CarTelemetryPacket, FinalClassificationPacket,
     LapDataPacket, LobbyInfoPacket, MotionExPacket,
     MotionPacket,
-    ParticipantsPacket,
+    ParticipantsPacket, SessionHistoryDataPacket,
     SessionPacket, TyreSetsPacket
 } from "../types";
 
@@ -31,4 +31,5 @@ export type PacketType =
     LobbyInfoPacket |
     CarDamagePacket |
     TyreSetsPacket |
-    MotionExPacket;
+    MotionExPacket |
+    SessionHistoryDataPacket;

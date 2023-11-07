@@ -13,10 +13,9 @@ import {
     CarDamagePacketParser,
     TyreSetsPacketParser,
     LobbyInfoPacketParser,
-    MotionExPacketParser
+    MotionExPacketParser, SessionHistoryDataPacketParser
 } from "./parsers";
 import {NoParserFoundError} from "./errors";
-
 
 export class PacketParser {
     static call(message: Buffer): PacketType {
@@ -40,7 +39,7 @@ export class PacketParser {
             case 8:  return new FinalClassificationPacketParser();
             case 9:  return new LobbyInfoPacketParser();
             case 10: return new CarDamagePacketParser();
-            case 11: return;
+            case 11: return new SessionHistoryDataPacketParser();
             case 12: return new TyreSetsPacketParser();
             case 13: return new MotionExPacketParser()
             default: return;
