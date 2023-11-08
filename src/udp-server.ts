@@ -34,8 +34,8 @@ export class UdpServer {
                 this.errorPackets += 1;
             }
 
-            // console.log(`OK: ${this.okPackets}`)
-            // console.log(`Error: ${this.errorPackets}`)
+            console.log(`OK: ${this.okPackets}`)
+            console.log(`Error: ${this.errorPackets}`)
         });
 
         return socket;

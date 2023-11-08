@@ -8,6 +8,7 @@ import {
     SessionPacketParser, TyreSetsPacketParser
 } from "./parsers";
 import {Parser} from "binary-parser";
+import {EventsPacketParser} from "./parsers/packets/events.packet";
 
 export class PacketParser extends BaseParser<PacketType> {
     call(message: Buffer): PacketType {
@@ -38,7 +39,7 @@ export class PacketParser extends BaseParser<PacketType> {
                 0: new MotionPacketParser(),
                 1: new SessionPacketParser(),
                 2: new LapDataPacketParser(),
-                3: new Parser(), //TODO: EventsPacketParser !
+                3: new EventsPacketParser(),
                 4: new ParticipantsPacketParser(),
                 5: new CarSetupPacketParser(),
                 6: new CarTelemetryPacketParser(),

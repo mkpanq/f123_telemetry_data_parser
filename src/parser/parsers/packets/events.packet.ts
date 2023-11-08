@@ -1,5 +1,5 @@
 import {BaseParser} from "../packet-data.parser";
-import {EVENT_NUMBER_CODE, EventCode, EventPacket} from "../../types";
+import {EVENT_NUMBER_CODE, EventCode, EventPacket, EventWithDetailsCode} from "../../types";
 import {Parser} from "binary-parser";
 
 export class EventsPacketParser extends BaseParser<EventPacket> {
@@ -22,20 +22,13 @@ export class EventsPacketParser extends BaseParser<EventPacket> {
                     [EVENT_NUMBER_CODE['FLBK']]: EVENT_PARSER_CODE['FLBK'],
                     [EVENT_NUMBER_CODE['BUTN']]: EVENT_PARSER_CODE['BUTN'],
                     [EVENT_NUMBER_CODE['OVTK']]: EVENT_PARSER_CODE['OVTK'],
-                }
+                },
+                defaultChoice: new Parser()
             })
     }
 }
 
-export const EVENT_PARSER_CODE: Record<EventCode, Parser> = {
-    // TODO: Fix this
-    'SSTA': undefined,
-    'SEND': undefined,
-    'DRSE': undefined,
-    'DRSD': undefined,
-    'CHQF': undefined,
-    'LGOT': undefined,
-    'RDFL': undefined,
+export const EVENT_PARSER_CODE: Record<EventWithDetailsCode, Parser> = {
     'FTLP': new Parser().uint8('vehicleIdx').floatle('lapTime'),
     'RTMT': new Parser().uint8('vehicleIdx'),
     'TMPT': new Parser().uint8('vehicleIdx'),

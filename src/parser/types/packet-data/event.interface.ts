@@ -80,27 +80,30 @@ export interface EventPacket extends PacketHeader {
         );
 }
 
-export type EventCode =
-    | 'SSTA'
-    | 'SEND'
+export type EventWithDetailsCode =
     | 'FTLP'
     | 'RTMT'
-    | 'DRSE'
-    | 'DRSD'
     | 'TMPT'
-    | 'CHQF'
     | 'RCWN'
     | 'PENA'
     | 'SPTP'
     | 'STLG'
-    | 'LGOT'
     | 'DTSV'
     | 'SGSV'
     | 'FLBK'
     | 'BUTN'
-    | 'RDFL'
     | 'OVTK'
 
+export type EventWithoutDetailsCode =
+    | 'SSTA'
+    | 'SEND'
+    | 'DRSE'
+    | 'DRSD'
+    | 'CHQF'
+    | 'LGOT'
+    | 'RDFL'
+
+export type EventCode = EventWithDetailsCode | EventWithoutDetailsCode;
 
 export const EVENT_NUMBER_CODE: Record<EventCode, number> = {
     'SSTA': 0,
