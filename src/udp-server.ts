@@ -4,13 +4,6 @@ import {PacketParser} from "./parser";
 type UdpSocket = dgram.Socket;
 
 export class UdpServer {
-    okPackets: number;
-    errorPackets: number;
-
-    constructor() {
-        this.errorPackets = 0;
-        this.okPackets = 0;
-    }
 
     public start(port: number): void {
         const socket = this.initSocket();
@@ -25,17 +18,11 @@ export class UdpServer {
             try {
                 const packetParser = new PacketParser();
                 const parsedPacket = packetParser.call(message);
-                if (parsedPacket) {
-                    console.log(parsedPacket);
-                }
-                this.okPackets += 1;
+
+                if (parsedPacket) { console.log(parsedPacket); }
             } catch (error) {
                 console.error(error);
-                this.errorPackets += 1;
             }
-
-            console.log(`OK: ${this.okPackets}`)
-            console.log(`Error: ${this.errorPackets}`)
         });
 
         return socket;

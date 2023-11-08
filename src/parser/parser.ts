@@ -1,14 +1,22 @@
 import {
-    BaseParser, CarDamagePacketParser,
-    CarSetupPacketParser, CarStatusPacketParser, CarTelemetryPacketParser, FinalClassificationPacketParser,
-    LapDataPacketParser, LobbyInfoPacketParser, MotionExPacketParser,
+    BaseParser,
+    CarDamagePacketParser,
+    CarSetupPacketParser,
+    CarStatusPacketParser,
+    CarTelemetryPacketParser,
+    EventsPacketParser,
+    FinalClassificationPacketParser,
+    LapDataPacketParser,
+    LobbyInfoPacketParser,
+    MotionExPacketParser,
     MotionPacketParser,
     PacketType,
-    ParticipantsPacketParser, SessionHistoryDataPacketParser,
-    SessionPacketParser, TyreSetsPacketParser
+    ParticipantsPacketParser,
+    SessionHistoryDataPacketParser,
+    SessionPacketParser,
+    TyreSetsPacketParser
 } from "./parsers";
 import {Parser} from "binary-parser";
-import {EventsPacketParser} from "./parsers/packets/events.packet";
 
 export class PacketParser extends BaseParser<PacketType> {
     call(message: Buffer): PacketType {
@@ -18,7 +26,6 @@ export class PacketParser extends BaseParser<PacketType> {
     constructor() {
         super();
 
-        // TODO: Header parser in separate class ?
         this.nest("m_header", {
             type: new Parser()
                 .uint16le('m_packetFormat')
