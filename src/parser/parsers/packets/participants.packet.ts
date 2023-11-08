@@ -1,6 +1,6 @@
-import {BaseParser} from "../_packet.parser";
+import {BaseParser} from "../packet-data.parser";
 import {ParticipantsPacket} from "../../types";
-import {PacketHeaderParser} from "../_header.parser";
+import {PacketHeaderParser} from "../header.parser";
 import {Parser} from "binary-parser";
 
 export class ParticipantsPacketParser extends BaseParser<ParticipantsPacket> {

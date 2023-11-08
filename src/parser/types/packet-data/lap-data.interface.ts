@@ -1,4 +1,4 @@
-import {HeaderBasePacket} from "../header-base.interface";
+import {PacketHeader} from "../header-base.interface";
 
 interface LapData {
     readonly m_lastLapTimeInMS: number;
@@ -32,7 +32,7 @@ interface LapData {
     readonly m_pitStopShouldServePen: number;
 }
 
-export interface LapDataPacket extends HeaderBasePacket {
+export interface LapDataPacket extends PacketHeader {
     readonly m_lapData: LapData[];
     readonly m_timeTrialPBCarIdx: number;
     readonly m_timeTrialRivalCarIdx: number;

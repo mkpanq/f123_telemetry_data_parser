@@ -1,4 +1,4 @@
-import {HeaderBasePacket} from "../header-base.interface";
+import {PacketHeader} from "../header-base.interface";
 
 export interface CarStatus {
     readonly m_tractionControl: number;
@@ -28,6 +28,6 @@ export interface CarStatus {
     readonly m_networkPaused: number;
 }
 
-export interface CarStatusPacket extends HeaderBasePacket {
+export interface CarStatusPacket extends PacketHeader {
     readonly m_carStatusData: CarStatus[];
 }

@@ -1,4 +1,4 @@
-import {HeaderBasePacket} from "../header-base.interface";
+import {PacketHeader} from "../header-base.interface";
 
 interface CarTelemetry {
     readonly m_speed: number;
@@ -19,7 +19,7 @@ interface CarTelemetry {
     readonly m_surfaceType: number[];
 }
 
-export interface CarTelemetryPacket extends HeaderBasePacket {
+export interface CarTelemetryPacket extends PacketHeader {
     readonly m_carTelemetryData: CarTelemetry[];
     readonly m_mfdPanelIndex: number;
     readonly m_mfdPanelIndexSecondaryPlayer: number;

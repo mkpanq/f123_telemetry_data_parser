@@ -1,7 +1,7 @@
 import {MotionPacket, SessionHistoryDataPacket} from "../../types";
-import {PacketHeaderParser} from "../_header.parser";
+import {PacketHeaderParser} from "../header.parser";
 import {Parser} from "binary-parser";
-import {BaseParser} from "../_packet.parser";
+import {BaseParser} from "../packet-data.parser";
 
 export class SessionHistoryDataPacketParser extends BaseParser<SessionHistoryDataPacket> {
     constructor() {

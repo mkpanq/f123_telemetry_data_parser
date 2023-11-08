@@ -1,4 +1,4 @@
-import {HeaderBasePacket} from "../header-base.interface";
+import {PacketHeader} from "../header-base.interface";
 
 export interface CarMotionData {
     readonly m_worldPositionX: number;
@@ -21,6 +21,6 @@ export interface CarMotionData {
     readonly m_roll: number;
 }
 
-export interface MotionPacket extends HeaderBasePacket {
+export interface MotionPacket extends PacketHeader {
     readonly m_carMotionData: CarMotionData[];
 }

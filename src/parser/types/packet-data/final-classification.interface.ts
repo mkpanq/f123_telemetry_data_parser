@@ -1,4 +1,4 @@
-import {HeaderBasePacket} from "../header-base.interface";
+import {PacketHeader} from "../header-base.interface";
 
 interface FinalClassification {
     readonly m_position: number;
@@ -17,7 +17,7 @@ interface FinalClassification {
     readonly m_tyreStintsEndLaps: number[];
 }
 
-export interface FinalClassificationPacket extends HeaderBasePacket {
+export interface FinalClassificationPacket extends PacketHeader {
     readonly m_numCars: number;
     readonly m_classificationData: FinalClassification[];
 }

@@ -1,4 +1,4 @@
-import {HeaderBasePacket} from "../header-base.interface";
+import {PacketHeader} from "../header-base.interface";
 
 interface TyreSetsData {
     readonly m_actualTyreCompound: number;
@@ -12,7 +12,7 @@ interface TyreSetsData {
     readonly m_fitted: number;
 }
 
-export interface TyreSetsPacket extends HeaderBasePacket {
+export interface TyreSetsPacket extends PacketHeader {
     readonly m_carIds: number;
     readonly m_tyreSetData: TyreSetsData[];
     readonly m_fittedIdx: number

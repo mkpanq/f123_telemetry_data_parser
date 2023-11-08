@@ -1,5 +1,5 @@
-import {BaseParser} from "../_packet.parser";
-import {PacketHeaderParser} from "../_header.parser";
+import {BaseParser} from "../packet-data.parser";
+import {PacketHeaderParser} from "../header.parser";
 import {Parser} from "binary-parser";
 import {LapDataPacket} from "../../types";
 
