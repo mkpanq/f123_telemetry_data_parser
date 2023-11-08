@@ -1,4 +1,4 @@
-import {BasePacket} from "../header-base.interface";
+import {HeaderBasePacket} from "../header-base.interface";
 
 interface FastestLapEvent {
     readonly vehicleIdx: number;
@@ -62,11 +62,8 @@ interface OvertakeEvent {
     readonly beingOvertakenVehicleIdx: number;
 }
 
-export interface EventPacketType extends BasePacket {
+export interface EventPacket extends HeaderBasePacket {
     readonly m_eventStringCode: string;
-}
-
-export interface EventPacketData extends EventPacketType {
     readonly m_eventDetails: (
         | FastestLapEvent
         | RetirementEvent

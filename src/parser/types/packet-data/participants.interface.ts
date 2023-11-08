@@ -1,4 +1,4 @@
-import {BasePacket} from "../header-base.interface";
+import {HeaderBasePacket} from "../header-base.interface";
 
 interface ParticipantData {
     readonly m_aiControlled: number;
@@ -14,7 +14,7 @@ interface ParticipantData {
     readonly m_platform: number;
 }
 
-export interface ParticipantsPacket extends BasePacket {
+export interface ParticipantsPacket extends HeaderBasePacket {
     readonly m_numActiveCars: number;
     readonly m_participants: ParticipantData[];
 }

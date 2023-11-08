@@ -13,6 +13,6 @@ interface HeaderData {
     readonly m_secondaryPlayerCarIndex: number;
 }
 
-export interface BasePacket {
+export interface HeaderBasePacket {
     readonly m_header: HeaderData;
 }

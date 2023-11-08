@@ -1,9 +1,9 @@
-import {BasePacket} from "../types";
+import {HeaderBasePacket} from "../types";
 import {Parser} from "binary-parser";
 import {BaseParser} from "./_packet.parser";
 import {MotionPacketParser} from "./packets";
 
-export class PacketHeaderParser extends BaseParser<BasePacket> {
+export class PacketHeaderParser extends BaseParser<HeaderBasePacket> {
     constructor() {
         super();
 

@@ -1,4 +1,4 @@
-import {BasePacket} from "../header-base.interface";
+import {HeaderBasePacket} from "../header-base.interface";
 
 interface LapHistoryData {
     readonly m_lapTimeInMS: number;
@@ -17,7 +17,7 @@ interface TyreStintHistoryData {
     readonly m_tyreVisualCompound: number;
 }
 
-export interface SessionHistoryDataPacket extends BasePacket {
+export interface SessionHistoryDataPacket extends HeaderBasePacket {
     readonly m_carIdx: number;
     readonly m_numLaps: number;
     readonly m_numTyreStints: number;

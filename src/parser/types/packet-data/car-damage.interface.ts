@@ -1,4 +1,4 @@
-import {BasePacket} from "../header-base.interface";
+import {HeaderBasePacket} from "../header-base.interface";
 
 interface CarDamageData {
     readonly m_tyresWear: number[];
@@ -24,6 +24,6 @@ interface CarDamageData {
     readonly m_engineSeized: number;
 }
 
-export interface CarDamagePacket extends BasePacket {
+export interface CarDamagePacket extends HeaderBasePacket {
     readonly m_carDamageData: CarDamageData[];
 }

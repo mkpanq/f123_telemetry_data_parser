@@ -1,6 +1,6 @@
-import {BasePacket} from "../header-base.interface";
+import {HeaderBasePacket} from "../header-base.interface";
 
-export interface MotionExPacket extends BasePacket {
+export interface MotionExPacket extends HeaderBasePacket {
     readonly m_suspensionPosition: number[];
     readonly m_suspensionVelocity: number[];
     readonly m_suspensionAcceleration: number[];

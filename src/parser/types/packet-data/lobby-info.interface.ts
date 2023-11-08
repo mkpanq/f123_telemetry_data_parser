@@ -1,4 +1,4 @@
-import {BasePacket} from "../header-base.interface";
+import {HeaderBasePacket} from "../header-base.interface";
 
 interface LobbyInfo {
     readonly m_aiControlled: number;
@@ -10,7 +10,7 @@ interface LobbyInfo {
     readonly m_readyStatus: number;
 }
 
-export interface LobbyInfoPacket extends BasePacket {
+export interface LobbyInfoPacket extends HeaderBasePacket {
     readonly m_numPlayers: number;
     readonly m_lobbyPlayers: LobbyInfo[];
 }

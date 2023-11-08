@@ -1,4 +1,4 @@
-import {BasePacket} from "../header-base.interface";
+import {HeaderBasePacket} from "../header-base.interface";
 
 interface WeatherForecastSample {
     readonly m_sessionType: number;
@@ -16,7 +16,7 @@ interface MarshallZone {
     readonly m_zoneFlag: number;
 }
 
-export interface SessionPacket extends BasePacket {
+export interface SessionPacket extends HeaderBasePacket {
     readonly m_weather: number;
     readonly m_trackTemperature: number;
     readonly m_airTemperature: number;
