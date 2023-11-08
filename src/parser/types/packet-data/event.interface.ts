@@ -79,3 +79,47 @@ export interface EventPacket extends PacketHeader {
         | OvertakeEvent
         );
 }
+
+export type EventCode =
+    | 'SSTA'
+    | 'SEND'
+    | 'FTLP'
+    | 'RTMT'
+    | 'DRSE'
+    | 'DRSD'
+    | 'TMPT'
+    | 'CHQF'
+    | 'RCWN'
+    | 'PENA'
+    | 'SPTP'
+    | 'STLG'
+    | 'LGOT'
+    | 'DTSV'
+    | 'SGSV'
+    | 'FLBK'
+    | 'BUTN'
+    | 'RDFL'
+    | 'OVTK'
+
+
+export const EVENT_NUMBER_CODE: Record<EventCode, number> = {
+    'SSTA': 0,
+    'SEND': 1,
+    'FTLP': 2,
+    'RTMT': 3,
+    'DRSE': 4,
+    'DRSD': 5,
+    'TMPT': 6,
+    'CHQF': 7,
+    'RCWN': 8,
+    'PENA': 9,
+    'SPTP': 10,
+    'STLG': 11,
+    'LGOT': 12,
+    'DTSV': 13,
+    'SGSV': 14,
+    'FLBK': 15,
+    'BUTN': 16,
+    'RDFL': 17,
+    'OVTK': 18
+}

@@ -17,6 +17,7 @@ export class PacketParser extends BaseParser<PacketType> {
     constructor() {
         super();
 
+        // TODO: Header parser in separate class ?
         this.nest("m_header", {
             type: new Parser()
                 .uint16le('m_packetFormat')
