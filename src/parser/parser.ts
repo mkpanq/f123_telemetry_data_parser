@@ -17,8 +17,7 @@ export class PacketParser extends BaseParser<PacketType> {
     constructor() {
         super();
 
-        this.useContextVars()
-            .nest("m_header", {
+        this.nest("m_header", {
             type: new Parser()
                 .uint16le('m_packetFormat')
                 .uint8('m_gameYear')
@@ -33,7 +32,7 @@ export class PacketParser extends BaseParser<PacketType> {
                 .uint8('m_playerCarIndex')
                 .uint8('m_secondaryPlayerCarIndex')}
         ).choice({
-            tag: (vars: { m_header: {m_packetId: number} }) => vars.m_header.m_packetId,
+            tag: (vars: { m_header: { m_packetId: number } }) => vars.m_header.m_packetId,
             choices: {
                 0: new MotionPacketParser(),
                 1: new SessionPacketParser(),
