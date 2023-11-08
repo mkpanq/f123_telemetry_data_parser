@@ -2,7 +2,7 @@ import {Parser} from "binary-parser";
 import {
     BasePacket, CarDamagePacket,
     CarSetupPacket, CarStatusPacket,
-    CarTelemetryPacket, FinalClassificationPacket,
+    CarTelemetryPacket, EventPacketData, EventPacketType, FinalClassificationPacket,
     LapDataPacket, LobbyInfoPacket, MotionExPacket,
     MotionPacket,
     ParticipantsPacket, SessionHistoryDataPacket,
@@ -16,20 +16,21 @@ export class BaseParser<TPacketType extends PacketType> extends Parser {
     }
 }
 
-
 // TODO: BasePacket type should be separated from to-parsed packet types !
 export type PacketType =
-    BasePacket |
-    MotionPacket |
-    SessionPacket |
-    LapDataPacket |
-    ParticipantsPacket |
-    CarSetupPacket |
-    CarTelemetryPacket |
-    CarStatusPacket |
-    FinalClassificationPacket |
-    LobbyInfoPacket |
-    CarDamagePacket |
-    TyreSetsPacket |
-    MotionExPacket |
-    SessionHistoryDataPacket;
+    | BasePacket
+    | MotionPacket
+    | SessionPacket
+    | LapDataPacket
+    | ParticipantsPacket
+    | CarSetupPacket
+    | CarTelemetryPacket
+    | CarStatusPacket
+    | FinalClassificationPacket
+    | LobbyInfoPacket
+    | CarDamagePacket
+    | TyreSetsPacket
+    | MotionExPacket
+    | SessionHistoryDataPacket
+    | EventPacketType
+    | EventPacketData

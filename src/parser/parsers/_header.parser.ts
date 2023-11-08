@@ -1,6 +1,7 @@
 import {BasePacket} from "../types";
 import {Parser} from "binary-parser";
 import {BaseParser} from "./_packet.parser";
+import {MotionPacketParser} from "./packets";
 
 export class PacketHeaderParser extends BaseParser<BasePacket> {
     constructor() {
@@ -8,7 +9,7 @@ export class PacketHeaderParser extends BaseParser<BasePacket> {
 
         this.nest('m_header', {
             type: new Parser()
-                .uint16('m_packetFormat')
+                .uint16le('m_packetFormat')
                 .uint8('m_gameYear')
                 .uint8('m_gameMajorVersion')
                 .uint8('m_gameMinorVersion')
@@ -20,7 +21,14 @@ export class PacketHeaderParser extends BaseParser<BasePacket> {
                 .uint32('m_overallFrameIdentifier')
                 .uint8('m_playerCarIndex')
                 .uint8('m_secondaryPlayerCarIndex')
-        });
+        })
+        // TODO: Implement refactor ! Use one packet parser, use choice instead of switch
+        // .choice({
+        //     tag: 'm_packetId',
+        //     choices: {
+        //         1: new MotionPacketParser()
+        //     }
+        // });
     }
 
     getPacketId(buffer: Buffer): number {

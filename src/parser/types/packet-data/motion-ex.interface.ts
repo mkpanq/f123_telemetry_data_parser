@@ -1,4 +1,4 @@
-import {BasePacket} from "./_base.interface";
+import {BasePacket} from "../header-base.interface";
 
 export interface MotionExPacket extends BasePacket {
     readonly m_suspensionPosition: number[];

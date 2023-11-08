@@ -1,4 +1,4 @@
-import {BasePacket} from "./_base.interface";
+import {BasePacket} from "../header-base.interface";
 
 interface LapData {
     readonly m_lastLapTimeInMS: number;

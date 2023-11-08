@@ -13,13 +13,16 @@ import {
     CarDamagePacketParser,
     TyreSetsPacketParser,
     LobbyInfoPacketParser,
-    MotionExPacketParser, SessionHistoryDataPacketParser
+    MotionExPacketParser, SessionHistoryDataPacketParser, EventPacketParser
 } from "./parsers";
 import {NoParserFoundError} from "./errors";
 
 export class PacketParser {
-    static call(message: Buffer): PacketType {
+    static call(message: Buffer): PacketType | undefined {
         const packetId = new PacketHeaderParser().getPacketId(message);
+        if (packetId != 3) {
+            return;
+        }
         const parser = this.getParser(packetId);
         if (!parser) { throw new NoParserFoundError(packetId); }
 
@@ -31,7 +34,7 @@ export class PacketParser {
             case 0:  return new MotionPacketParser();
             case 1:  return new SessionPacketParser();
             case 2:  return new LapDataPacketParser();
-            case 3:  return;
+            case 3:  return; // new EventPacketParser();
             case 4:  return new ParticipantsPacketParser();
             case 5:  return new CarSetupPacketParser();
             case 6:  return new CarTelemetryPacketParser();
