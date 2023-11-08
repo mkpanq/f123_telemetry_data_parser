@@ -1,51 +1,56 @@
 import {
+    BaseParser, CarDamagePacketParser,
+    CarSetupPacketParser, CarStatusPacketParser, CarTelemetryPacketParser, FinalClassificationPacketParser,
+    LapDataPacketParser, LobbyInfoPacketParser, MotionExPacketParser,
     MotionPacketParser,
-    PacketHeaderParser,
-    BaseParser,
     PacketType,
-    SessionPacketParser,
-    LapDataPacketParser,
-    ParticipantsPacketParser,
-    CarSetupPacketParser,
-    CarTelemetryPacketParser,
-    CarStatusPacketParser,
-    FinalClassificationPacketParser,
-    CarDamagePacketParser,
-    TyreSetsPacketParser,
-    LobbyInfoPacketParser,
-    MotionExPacketParser, SessionHistoryDataPacketParser
+    ParticipantsPacketParser, SessionHistoryDataPacketParser,
+    SessionPacketParser, TyreSetsPacketParser
 } from "./parsers";
-import {NoParserFoundError} from "./errors";
+import {Parser} from "binary-parser";
 
-export class PacketParser {
-    static call(message: Buffer): PacketType | undefined {
-        const packetId = new PacketHeaderParser().getPacketId(message);
-        if (packetId != 3) {
-            return;
-        }
-        const parser = this.getParser(packetId);
-        if (!parser) { throw new NoParserFoundError(packetId); }
-
-        return parser.parseBuffer(message);
+export class PacketParser extends BaseParser<PacketType> {
+    call(message: Buffer): PacketType {
+        return this.parseBuffer(message);
     }
-    
-    private static getParser(packetId: number): BaseParser<PacketType> | undefined {
-        switch (packetId) {
-            case 0:  return new MotionPacketParser();
-            case 1:  return new SessionPacketParser();
-            case 2:  return new LapDataPacketParser();
-            case 3:  return;
-            case 4:  return new ParticipantsPacketParser();
-            case 5:  return new CarSetupPacketParser();
-            case 6:  return new CarTelemetryPacketParser();
-            case 7:  return new CarStatusPacketParser();
-            case 8:  return new FinalClassificationPacketParser();
-            case 9:  return new LobbyInfoPacketParser();
-            case 10: return new CarDamagePacketParser();
-            case 11: return new SessionHistoryDataPacketParser();
-            case 12: return new TyreSetsPacketParser();
-            case 13: return new MotionExPacketParser()
-            default: return;
-        }
+
+    constructor() {
+        super();
+
+        this.useContextVars()
+            .nest("m_header", {
+            type: new Parser()
+                .uint16le('m_packetFormat')
+                .uint8('m_gameYear')
+                .uint8('m_gameMajorVersion')
+                .uint8('m_gameMinorVersion')
+                .uint8('m_packetVersion')
+                .uint8('m_packetId')
+                .uint64('m_sessionUID')
+                .floatle('m_sessionTime')
+                .uint32('m_frameIdentifier')
+                .uint32('m_overallFrameIdentifier')
+                .uint8('m_playerCarIndex')
+                .uint8('m_secondaryPlayerCarIndex')}
+        ).choice({
+            tag: (vars: { m_header: {m_packetId: number} }) => vars.m_header.m_packetId,
+            choices: {
+                0: new MotionPacketParser(),
+                1: new SessionPacketParser(),
+                2: new LapDataPacketParser(),
+                3: new Parser(), //TODO: EventsPacketParser !
+                4: new ParticipantsPacketParser(),
+                5: new CarSetupPacketParser(),
+                6: new CarTelemetryPacketParser(),
+                7: new CarStatusPacketParser(),
+                8: new FinalClassificationPacketParser(),
+                9: new LobbyInfoPacketParser(),
+                10: new CarDamagePacketParser(),
+                11: new SessionHistoryDataPacketParser(),
+                12: new TyreSetsPacketParser(),
+                13: new MotionExPacketParser()
+            },
+            defaultChoice: new Parser()
+        })
     }
 }

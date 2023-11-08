@@ -1,6 +1,6 @@
 import {Parser} from "binary-parser";
 import {
-    PacketHeader, CarDamagePacket,
+    CarDamagePacket,
     CarSetupPacket, CarStatusPacket,
     CarTelemetryPacket, FinalClassificationPacket,
     LapDataPacket, LobbyInfoPacket, MotionExPacket,
@@ -8,13 +8,6 @@ import {
     ParticipantsPacket, SessionHistoryDataPacket,
     SessionPacket, TyreSetsPacket
 } from "../types";
-
-
-export class BaseParser<TPacketType extends PacketType> extends Parser {
-    parseBuffer(buffer: Buffer): TPacketType {
-        return this.parse(buffer);
-    }
-}
 
 export type PacketType =
     | MotionPacket
@@ -30,3 +23,10 @@ export type PacketType =
     | TyreSetsPacket
     | MotionExPacket
     | SessionHistoryDataPacket
+
+export class BaseParser<TPacketType extends PacketType> extends Parser {
+    parseBuffer(buffer: Buffer): TPacketType {
+        return this.parse(buffer);
+    }
+}
+

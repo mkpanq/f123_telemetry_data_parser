@@ -23,7 +23,8 @@ export class UdpServer {
 
         socket.on('message', (message) => {
             try {
-                const parsedPacket = PacketParser.call(message);
+                const packetParser = new PacketParser();
+                const parsedPacket = packetParser.call(message);
                 if (parsedPacket) {
                     console.log(parsedPacket);
                 }
